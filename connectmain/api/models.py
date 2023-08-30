@@ -22,7 +22,7 @@ class UserProfile(models.Model):
 
 
 class BusinessProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=16, null=True, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -34,9 +34,8 @@ class BusinessProfile(models.Model):
         return str(self.title)
 
 
-class Comment(models.Model):
+class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    # when business is deleted - all comments are also deleted
     businessProfile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE)
     text = models.TextField()
     updated = models.DateTimeField(auto_now=True)

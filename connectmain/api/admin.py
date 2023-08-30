@@ -5,9 +5,9 @@ from django.contrib import admin
 from .models import UserProfile
 from .models import BusinessProfile
 from .models import Category
-from .models import Comment
+from .models import Review
 
 admin.site.register(UserProfile)
 admin.site.register(BusinessProfile)
 admin.site.register(Category)
-admin.site.register(Comment)
+admin.site.register(Review)

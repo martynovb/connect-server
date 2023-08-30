@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import BusinessProfile, Comment, UserProfile, Category
+from .models import BusinessProfile, Review, UserProfile, Category
 from django.contrib.auth.models import User
 
 
@@ -12,7 +12,7 @@ class CategorySerializer(ModelSerializer):
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'first_name']
+        fields = ['id', 'email', 'first_name']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -26,7 +26,7 @@ class UserProfileSerializer(ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ('user',)
 
 
 class BusinessProfileSerializer(ModelSerializer):
@@ -38,7 +38,8 @@ class BusinessProfileSerializer(ModelSerializer):
         fields = ['user', 'category', 'title', 'description']
 
 
-class CommentSerializer(ModelSerializer):
+class ReviewSerializer(ModelSerializer):
     class Meta:
-        model = Comment
+        model = Review
+        # fields = ['text', 'businessProfile', 'updated', 'created']
         fields = '__all__'
